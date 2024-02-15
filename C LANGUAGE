@@ -1,14 +1,7 @@
-//write a menu driven program in c to input 1d array and perform following operations
-// a) linear search for an element 
-// b) inserting an element at specified position
-// c) deleting an element from specified position
-// d)reversing the array
-// e)updating the array multiplying odd indexes by 2 and adding 5 to even indexes
-
 #include<stdio.h>
 
 void linearsearch(int arr[], int size, int searched_element);
-void insertelement(int arr[], int *size, int x,int i, int pos);
+void insertelement(int arr[], int size, int x,int i, int pos);
 void deleteElement(int arr[], int *size, int pos);
 void reversearray(int arr[], int size);
 void updatearray(int arr[] , int size);
@@ -54,11 +47,12 @@ do{
       scanf("%d", &x);
       printf("enter the position to insert : ");
       scanf("%d", &pos);
-      
-      insertelement(arr, &size, x,i, pos);
+      size++;
+      insertelement(arr, size, x,i, pos);
        for(i=0; i<size ; i++){
       printf( "%d \t" , arr[i] );
       }  
+      
       break;
 
       case 'c' :
@@ -117,17 +111,17 @@ void linearsearch(int arr[], int size, int searched_element) {
       }
 }
 
-void insertelement(int arr[], int *size, int x, int i, int pos) {
-      if(pos < 0 || pos > *size) {
+void insertelement(int arr[], int size, int x, int i, int pos) {
+      if(pos < 0 || pos > size) {
          printf("wrong position entered! \n");
       }
      else {
-      for(int i=*size-1; i>pos-1; i--) {
-         arr[i+1]=arr[i];
+      for(int i=size-1; i>=pos ; i--) {
+         arr[i]=arr[i-1];
       }
 
       arr[pos-1] = x;
-      (*size)++;
+      size++;
       printf("element %d inserted at position %d\n ", x, pos);
      }
 
